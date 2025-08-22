@@ -1,0 +1,262 @@
+.course-detail {
+  background: #fff;
+  color: #222;
+  min-height: 100vh;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding-bottom: 40px;
+}
+
+.course-header {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.course-info h1 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.course-code {
+  background-color: #007bff;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.9em;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.course-info p {
+  margin: 8px 0;
+  color: #000000;
+}
+
+.blocks-section {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.blocks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.blocks-header h2 {
+  margin: 0;
+  color: #333;
+}
+
+.block-form {
+  padding: 20px 30px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.blocks-list {
+  padding: 20px 30px;
+}
+
+.block-item {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+.block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.block-header h3 {
+  margin: 0;
+  color: #333;
+}
+
+.block-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.block-type {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.block-type.note {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.block-type.task {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.block-type.event {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.block-type.file {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.block-content {
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Make the markdown editor and preview white */
+.w-md-editor {
+  background: #fff !important;
+  color: #222 !important;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+/* Markdown preview area */
+.w-md-editor-preview {
+  background: #fff !important;
+  color: #222 !important;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+/* Optional: Make the note block content area white */
+.block-content {
+  background: #fff;
+  color: #222;
+  border-radius: 6px;
+  padding: 16px;
+  line-height: 1.6;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+/* Edit Course Form Styles */
+.edit-course-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin-bottom: 1rem;
+}
+
+.edit-course-form input,
+.edit-course-form textarea {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 1rem;
+  background: #fff;
+}
+
+.edit-course-form textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.edit-course-form button {
+  width: fit-content;
+  padding: 0.5rem 1.5rem;
+  margin-right: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.edit-course-form .btn-primary {
+  background: #2563eb;
+  color: #fff;
+}
+
+.edit-course-form .btn-secondary {
+  background: #e5e7eb;
+  color: #333;
+}
+
+.edit-course-form .btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.edit-course-form .btn-secondary:hover {
+  background: #d1d5db;
+}
+
+/* Override markdown code block background to white */
+.w-md-editor-preview pre,
+.w-md-editor-preview code {
+  background: #fff !important;
+  color: #222 !important;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 1em;
+  box-shadow: none;
+}
+
+/* Force markdown preview background to white and text to dark */
+.wmde-markdown,
+.wmde-markdown-color {
+  background: #fff !important;
+  color: #222 !important;
+}
+
+
+@media (max-width: 768px) {
+  .course-header {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .blocks-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+  
+  .block-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .block-meta {
+    justify-content: space-between;
+  }
+}
