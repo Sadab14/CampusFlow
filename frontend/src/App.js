@@ -7,6 +7,7 @@ import CourseDetail from './pages/CourseDetail';
 import CreateCourse from './pages/CreateCourse';
 import Login from './components/Login';
 import Register from './components/Register';
+import LandingPage from './pages/LandingPage';
 import './App.css';
 
 // Protected Route Component
@@ -50,13 +51,11 @@ function AppContent() {
               <Register />
             </PublicRoute>
           } />
-          
-          {/* Protected Routes */}
+          {/* Landing page for unauthenticated users */}
           <Route path="/" element={
-            <ProtectedRoute>
-              <CourseList />
-            </ProtectedRoute>
+            !isAuthenticated ? <LandingPage /> : <CourseList />
           } />
+          {/* Protected Routes */}
           <Route path="/courses/new" element={
             <ProtectedRoute>
               <CreateCourse />
