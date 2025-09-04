@@ -393,7 +393,7 @@ const CourseDetail = () => {
                     </div>
                   )}
                   {block.type === 'task' && (
-                    <div className={`block-content priority-${block.content.priority || 'medium'}`}>
+                    <div className={`block-content priority-${block.content.priority || 'medium'}${block.content.status === 'complete' ? 'complete-task' : ''}`}>
                       <p><strong>Due:</strong> {block.content.dueDate ? new Date(block.content.dueDate).toLocaleDateString() : 'No due date'}</p>
                       <p>
                         <strong>Status:</strong> {block.content.status === 'complete' ? '✅ Complete' : '❌ Incomplete'}

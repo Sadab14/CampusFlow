@@ -11,7 +11,7 @@
 .dashboard-root h1 {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #2563eb;
+  color: #000100;
   margin-bottom: 24px;
   letter-spacing: -1px;
 }
@@ -33,14 +33,14 @@
 .dashboard-section h2 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #7c3aed;
+  color: #000000;
   margin-bottom: 12px;
 }
 
 .dashboard-event,
 .dashboard-task {
   background: #eef2ff;
-  color: #2563eb;
+  color: #000100;
   border-radius: 8px;
   padding: 8px 12px;
   margin-bottom: 8px;
@@ -84,7 +84,7 @@
 
 .dashboard-link {
   background: #e0e7ff;
-  color: #2563eb;
+  color: #000100;
   font-weight: 600;
   padding: 8px 16px;
   border-radius: 8px;
@@ -94,7 +94,7 @@
 }
 
 .dashboard-link:hover {
-  background: #2563eb;
+  background: #000100;
   color: #fff;
 }
 
@@ -103,21 +103,18 @@
 .priority-high {
   background: #fee2e2 !important;
   color: #dc2626 !important;
-  border-left: 4px solid #dc2626;
 }
 
 /* Medium Priority */
 .priority-medium {
   background: #fef9c3 !important;
   color: #f59e42 !important;
-  border-left: 4px solid #f59e42;
 }
 
 /* Low Priority */
 .priority-low {
   background: #e6fbe8 !important;
   color: #22c55e !important;
-  border-left: 4px solid #22c55e;
 }
 
 /* Responsive Fix */

@@ -1,0 +1,39 @@
+.reminder-banner {
+  background: #fff7ed;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(251,191,36,0.08);
+  padding: 14px 20px;
+  margin-bottom: 24px;
+  font-size: 1.08rem;
+}
+
+.reminder-banner-alert {
+  color: #dc2626;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.reminder-banner-warning {
+  color: #f59e42;
+  font-weight: 600;
+}
+
+.reminder-task {
+  display: inline-block;
+  margin-left: 12px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: #fef2f2;
+  color: #dc2626;
+  font-weight: 500;
+}
+
+.reminder-task.urgent {
+  background: #fef9c3;
+  color: #f59e42;
+}
+
+.reminder-task.overdue {
+  background: #fee2e2;
+  color: #dc2626;
+}

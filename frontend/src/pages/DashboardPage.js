@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { blockAPI, courseAPI } from '../services/api';
 import { Link } from 'react-router-dom';
 import './DashboardPage.css';
+import ReminderBanner from '../components/ReminderBanner';
+import '../components/ReminderBanner.css';
 
 function isToday(dateStr) {
   const d = new Date(dateStr);
@@ -47,7 +49,9 @@ const DashboardPage = () => {
     b.type === 'event' && isToday(b.content.date)
   );
   const todayTasks = blocks.filter(b =>
-    b.type === 'task' && isToday(b.content.dueDate)
+    b.type === 'task' &&
+    isToday(b.content.dueDate) &&
+    b.content.status !== 'complete' // Only show incomplete tasks
   );
   const upcomingTasks = blocks.filter(b =>
     b.type === 'task' && isUpcoming(b.content.dueDate)
@@ -59,6 +63,7 @@ const DashboardPage = () => {
   return (
     <div className="dashboard-root">
       <h1>Dashboard</h1>
+      <ReminderBanner tasks={blocks.filter(b => b.type === 'task')} />
       {loading ? (
         <div>Loading...</div>
       ) : (
