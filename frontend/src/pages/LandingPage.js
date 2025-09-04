@@ -11,7 +11,6 @@ const LandingPage = () => {
         <div className="landing-container">
           <nav className="landing-nav">
             <div className="landing-brand">
-              <BookOpen className="landing-logo" />
               <span className="landing-title">CampusFlow</span>
             </div>
             <div className="landing-auth-links">
@@ -118,34 +117,6 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="landing-cta-section">
-        <div className="landing-container landing-cta-content">
-          <h2>Ready to Transform Your Studies?</h2>
-          <p>
-            Join thousands of students who have already streamlined their academic workflow 
-            with CampusFlow.
-          </p>
-          <Link to="/register" className="landing-btn landing-btn-cta">
-            <span>Get Started for Free</span>
-            <ArrowRight className="landing-btn-icon" />
-          </Link>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="landing-footer">
-        <div className="landing-container landing-footer-content">
-          <div className="landing-footer-brand">
-            <BookOpen className="landing-footer-logo" />
-            <span>CampusFlow</span>
-          </div>
-          <p>
-            Empowering students to achieve academic excellence through better organization.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 };

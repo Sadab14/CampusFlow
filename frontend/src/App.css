@@ -53,6 +53,9 @@ body {
 .btn-danger {
   background-color: #dc3545;
   color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: normal;
+  font-style: normal;
 }
 
 .btn-danger:hover {

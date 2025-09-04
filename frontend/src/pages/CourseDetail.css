@@ -71,62 +71,67 @@
 }
 
 .block-item {
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
-  border-radius: 6px;
-  padding: 20px;
-  margin-bottom: 15px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(60,60,120,0.06);
+  padding: 18px 16px;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
 }
 
 .block-header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 }
 
 .block-header h3 {
-  margin: 0;
-  color: #333;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #222;
 }
 
 .block-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  font-size: 0.95rem;
+  color: #64748b;
 }
 
 .block-type {
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.8em;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.block-type.note {
-  background-color: #d4edda;
-  color: #155724;
+  background: #f3f4f6;
+  color: #2563eb;
+  border-radius: 6px;
+  padding: 2px 10px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-left: 8px;
 }
 
 .block-type.task {
-  background-color: #fff3cd;
-  color: #856404;
+  color: #f59e42;
 }
 
 .block-type.event {
-  background-color: #d1ecf1;
-  color: #0c5460;
+  color: #7c3aed;
+}
+
+.block-type.note {
+  color: #22c55e;
 }
 
 .block-type.file {
-  background-color: #f8d7da;
-  color: #721c24;
+  color: #2563eb;
 }
 
 .block-content {
-  color: #666;
-  line-height: 1.5;
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 14px 12px;
+  margin-top: 6px;
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.6;
 }
 
 /* Make the markdown editor and preview white */
@@ -262,6 +267,71 @@
   box-shadow: 0 1px 4px rgba(60,60,120,0.04);
 }
 
+.block-filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.block-filters button {
+  background: #f3f4f6;
+  color: #374151;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.block-filters button.active,
+.block-filters button:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+.block-search {
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 1rem;
+  margin-left: 12px;
+  background: #fff;
+  color: #374151;
+  box-shadow: 0 1px 4px rgba(60,60,120,0.04);
+  transition: border 0.2s;
+}
+
+.block-search:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+/* Add Block Button - right aligned with top margin */
+.add-block-btn {
+  margin-bottom: 0;
+  float: right;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-block-btn:hover {
+  background: #1d4ed8;
+}
+
+/* Clear float after blocks-header */
+.blocks-header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
 @media (max-width: 768px) {
   .course-header {

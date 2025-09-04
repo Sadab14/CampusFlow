@@ -24,6 +24,8 @@ const CourseDetail = () => {
     instructor: '',
     description: ''
   });
+  const [search, setSearch] = useState('');
+  const [blockTypeFilter, setBlockTypeFilter] = useState('all');
 
   const fetchCourseData = useCallback(async () => {
     try {
@@ -106,6 +108,19 @@ const CourseDetail = () => {
   if (error) return <div className="error">{error}</div>;
   if (!course) return <div className="error">Course not found</div>;
 
+  const filteredBlocks = blocks.filter(b => {
+    // Filter by type
+    if (blockTypeFilter !== 'all' && b.type !== blockTypeFilter) return false;
+    // Search by title or content
+    const searchText = search.toLowerCase();
+    const titleMatch = b.title && b.title.toLowerCase().includes(searchText);
+    const contentMatch = b.content && (
+      (typeof b.content === 'string' && b.content.toLowerCase().includes(searchText)) ||
+      (b.content.text && b.content.text.toLowerCase().includes(searchText))
+    );
+    return searchText === '' || titleMatch || contentMatch;
+  });
+
   return (
     <div className="course-detail">
       <div className="course-header">
@@ -187,183 +202,213 @@ const CourseDetail = () => {
 
       <div className="blocks-section">
         <div className="blocks-header">
-          <h2>Course Content</h2>
-          <button 
-            onClick={() => setShowBlockForm(!showBlockForm)}
-            className="btn btn-primary"
-          >
-            Add Block
-          </button>
+          <h2>Blocks</h2>
+          <div className="block-filters">
+            <button
+              className={blockTypeFilter === 'all' ? 'active' : ''}
+              onClick={() => setBlockTypeFilter('all')}
+            >All</button>
+            <button
+              className={blockTypeFilter === 'note' ? 'active' : ''}
+              onClick={() => setBlockTypeFilter('note')}
+            >Notes</button>
+            <button
+              className={blockTypeFilter === 'task' ? 'active' : ''}
+              onClick={() => setBlockTypeFilter('task')}
+            >Tasks</button>
+            <button
+              className={blockTypeFilter === 'event' ? 'active' : ''}
+              onClick={() => setBlockTypeFilter('event')}
+            >Events</button>
+            <button
+              className={blockTypeFilter === 'file' ? 'active' : ''}
+              onClick={() => setBlockTypeFilter('file')}
+            >Files</button>
+            <input
+              type="text"
+              placeholder="Search by title or content..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              className="block-search"
+            />
+            <button
+              className="add-block-btn"
+              onClick={() => setShowBlockForm(true)}
+                >
+              + Add Block
+            </button>
+          </div>
         </div>
-
         {showBlockForm && (
-          <form onSubmit={handleCreateBlock} className="block-form">
-            <div className="form-group">
-              <label>Block Type</label>
-              <select 
-                value={newBlock.type}
-                onChange={(e) => setNewBlock({...newBlock, type: e.target.value})}
-              >
-                <option value="note">Note</option>
-                <option value="task">Task</option>
-                <option value="event">Event</option>
-                <option value="file">File</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label>Title</label>
-              <input
-                type="text"
-                value={newBlock.title}
-                onChange={(e) => setNewBlock({...newBlock, title: e.target.value})}
-                required
-              />
-            </div>
-            {newBlock.type === 'note' && (
+          <div className="block-form">
+            <form onSubmit={handleCreateBlock}>
               <div className="form-group">
-                <label>Note Content</label>
-                <MDEditor
-                  value={newBlock.content.text}
-                  onChange={value =>
-                    setNewBlock({
-                      ...newBlock,
-                      content: { ...newBlock.content, text: value || '' }
-                    })
-                  }
-                  height={200}
+                <label>Block Type</label>
+                <select 
+                  value={newBlock.type}
+                  onChange={(e) => setNewBlock({...newBlock, type: e.target.value})}
+                >
+                  <option value="note">Note</option>
+                  <option value="task">Task</option>
+                  <option value="event">Event</option>
+                  <option value="file">File</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Title</label>
+                <input
+                  type="text"
+                  value={newBlock.title}
+                  onChange={(e) => setNewBlock({...newBlock, title: e.target.value})}
+                  required
                 />
               </div>
-            )}
-            {newBlock.type === 'event' && (
-              <>
+              {newBlock.type === 'note' && (
                 <div className="form-group">
-                  <label>Date & Time</label>
-                  <input
-                    type="datetime-local"
-                    value={newBlock.content.date || ''}
-                    onChange={e => setNewBlock({
-                      ...newBlock,
-                      content: { ...newBlock.content, date: e.target.value }
-                    })}
-                    required
+                  <label>Note Content</label>
+                  <MDEditor
+                    value={newBlock.content.text}
+                    onChange={value =>
+                      setNewBlock({
+                        ...newBlock,
+                        content: { ...newBlock.content, text: value || '' }
+                      })
+                    }
+                    height={200}
                   />
                 </div>
-                <div className="form-group">
-                  <label>Event Type</label>
-                  <input
-                    type="text"
-                    value={newBlock.content.eventType || ''}
-                    onChange={e => setNewBlock({
-                      ...newBlock,
-                      content: { ...newBlock.content, eventType: e.target.value }
-                    })}
-                    placeholder="Exam, Class, Assignment, etc."
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Description</label>
-                  <textarea
-                    value={newBlock.content.text || ''}
-                    onChange={e => setNewBlock({
-                      ...newBlock,
-                      content: { ...newBlock.content, text: e.target.value }
-                    })}
-                    rows="2"
-                    placeholder="Event details"
-                  />
-                </div>
-              </>
-            )}
-            {newBlock.type === 'task' && (
-              <>
-                <div className="form-group">
-                  <label>Due Date</label>
-                  <input
-                    type="date"
-                    value={newBlock.content.dueDate || ''}
-                    onChange={e => setNewBlock({
-                      ...newBlock,
-                      content: { ...newBlock.content, dueDate: e.target.value }
-                    })}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Status</label>
-                  <select
-                    value={newBlock.content.status || 'incomplete'}
-                    onChange={e => setNewBlock({
-                      ...newBlock,
-                      content: { ...newBlock.content, status: e.target.value }
-                    })}
-                  >
-                    <option value="incomplete">Incomplete</option>
-                    <option value="complete">Complete</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label>Priority</label>
-                  <select
-                    value={newBlock.content.priority || 'medium'}
-                    onChange={e => setNewBlock({
-                      ...newBlock,
-                      content: { ...newBlock.content, priority: e.target.value }
-                    })}
-                  >
-                    <option value="high">High</option>
-                    <option value="medium">Medium</option>
-                    <option value="low">Low</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label>Task Description</label>
-                  <textarea
-                    value={newBlock.content.text || ''}
-                    onChange={e => setNewBlock({
-                      ...newBlock,
-                      content: { ...newBlock.content, text: e.target.value }
-                    })}
-                    rows="2"
-                    placeholder="Task details"
-                  />
-                </div>
-              </>
-            )}
-            {newBlock.type === 'file' && (
-              <>
-                <div className="form-group">
-                  <label>Upload File</label>
-                  <input
-                    type="file"
-                    onChange={e => setNewBlock({
-                      ...newBlock,
-                      content: { ...newBlock.content, file: e.target.files[0] }
-                    })}
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label>File Type</label>
-                  <input
-                    type="text"
-                    value={newBlock.content.fileType || ''}
-                    onChange={e => setNewBlock({
-                      ...newBlock,
-                      content: { ...newBlock.content, fileType: e.target.value }
-                    })}
-                    placeholder="Lecture, Assignment, Note, etc."
-                  />
-                </div>
-              </>
-            )}
-            <div className="form-actions">
-              <button type="button" onClick={() => setShowBlockForm(false)} className="btn btn-secondary">
-                Cancel
-              </button>
-              <button type="submit" className="btn btn-primary">
-                Create Block
-              </button>
-            </div>
-          </form>
+              )}
+              {newBlock.type === 'event' && (
+                <>
+                  <div className="form-group">
+                    <label>Date & Time</label>
+                    <input
+                      type="datetime-local"
+                      value={newBlock.content.date || ''}
+                      onChange={e => setNewBlock({
+                        ...newBlock,
+                        content: { ...newBlock.content, date: e.target.value }
+                      })}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Event Type</label>
+                    <input
+                      type="text"
+                      value={newBlock.content.eventType || ''}
+                      onChange={e => setNewBlock({
+                        ...newBlock,
+                        content: { ...newBlock.content, eventType: e.target.value }
+                      })}
+                      placeholder="Exam, Class, Assignment, etc."
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Description</label>
+                    <textarea
+                      value={newBlock.content.text || ''}
+                      onChange={e => setNewBlock({
+                        ...newBlock,
+                        content: { ...newBlock.content, text: e.target.value }
+                      })}
+                      rows="2"
+                      placeholder="Event details"
+                    />
+                  </div>
+                </>
+              )}
+              {newBlock.type === 'task' && (
+                <>
+                  <div className="form-group">
+                    <label>Due Date</label>
+                    <input
+                      type="date"
+                      value={newBlock.content.dueDate || ''}
+                      onChange={e => setNewBlock({
+                        ...newBlock,
+                        content: { ...newBlock.content, dueDate: e.target.value }
+                      })}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Status</label>
+                    <select
+                      value={newBlock.content.status || 'incomplete'}
+                      onChange={e => setNewBlock({
+                        ...newBlock,
+                        content: { ...newBlock.content, status: e.target.value }
+                      })}
+                    >
+                      <option value="incomplete">Incomplete</option>
+                      <option value="complete">Complete</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Priority</label>
+                    <select
+                      value={newBlock.content.priority || 'medium'}
+                      onChange={e => setNewBlock({
+                        ...newBlock,
+                        content: { ...newBlock.content, priority: e.target.value }
+                      })}
+                    >
+                      <option value="high">High</option>
+                      <option value="medium">Medium</option>
+                      <option value="low">Low</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Task Description</label>
+                    <textarea
+                      value={newBlock.content.text || ''}
+                      onChange={e => setNewBlock({
+                        ...newBlock,
+                        content: { ...newBlock.content, text: e.target.value }
+                      })}
+                      rows="2"
+                      placeholder="Task details"
+                    />
+                  </div>
+                </>
+              )}
+              {newBlock.type === 'file' && (
+                <>
+                  <div className="form-group">
+                    <label>Upload File</label>
+                    <input
+                      type="file"
+                      onChange={e => setNewBlock({
+                        ...newBlock,
+                        content: { ...newBlock.content, file: e.target.files[0] }
+                      })}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>File Type</label>
+                    <input
+                      type="text"
+                      value={newBlock.content.fileType || ''}
+                      onChange={e => setNewBlock({
+                        ...newBlock,
+                        content: { ...newBlock.content, fileType: e.target.value }
+                      })}
+                      placeholder="Lecture, Assignment, Note, etc."
+                    />
+                  </div>
+                </>
+              )}
+              <div className="form-actions">
+                <button type="button" onClick={() => setShowBlockForm(false)} className="btn btn-secondary">
+                  Cancel
+                </button>
+                <button type="submit" className="btn btn-primary">
+                  Create Block
+                </button>
+              </div>
+            </form>
+          </div>
         )}
 
         <div className="blocks-list">
@@ -372,7 +417,7 @@ const CourseDetail = () => {
               <p>No content blocks yet. Add your first block!</p>
             </div>
           ) : (
-            blocks.map(block => (
+            filteredBlocks.map(block => (
               <div key={block._id} className="block-item">
                 <div className="block-header">
                   <h3>{block.title}</h3>

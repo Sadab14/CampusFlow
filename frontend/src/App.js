@@ -8,7 +8,7 @@ import CreateCourse from './pages/CreateCourse';
 import Login from './components/Login';
 import Register from './components/Register';
 import LandingPage from './pages/LandingPage';
-import CalendarView from './pages/CalendarView'; // Import the CalendarView component
+import CalendarView from './pages/CalendarView';
 import DashboardPage from './pages/DashboardPage';
 import './App.css';
 
