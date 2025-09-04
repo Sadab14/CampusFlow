@@ -98,6 +98,28 @@
   color: #fff;
 }
 
+/* Priority Styles */
+/* High Priority */
+.priority-high {
+  background: #fee2e2 !important;
+  color: #dc2626 !important;
+  border-left: 4px solid #dc2626;
+}
+
+/* Medium Priority */
+.priority-medium {
+  background: #fef9c3 !important;
+  color: #f59e42 !important;
+  border-left: 4px solid #f59e42;
+}
+
+/* Low Priority */
+.priority-low {
+  background: #e6fbe8 !important;
+  color: #22c55e !important;
+  border-left: 4px solid #22c55e;
+}
+
 /* Responsive Fix */
 @media (max-width: 900px) {
   .dashboard-grid {

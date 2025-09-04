@@ -79,9 +79,11 @@ const DashboardPage = () => {
             {todayTasks.length === 0 ? (
               <div className="dashboard-empty">No tasks for today</div>
             ) : todayTasks.map(task => (
-              <div key={task._id} className={`dashboard-task${task.content.status !== 'complete' && new Date(task.content.dueDate) < new Date() ? ' overdue-task' : ''}`}>
-                <span>✅ {task.title}</span>
-                <div className="dashboard-meta">{task.course.name}</div>
+              <div key={task._id} className={`dashboard-task priority-${task.content.priority || 'medium'}`}>
+                <span>{task.title}</span>
+                <div className="dashboard-meta">
+                  {task.course.name} • Priority: {task.content.priority || 'Medium'}
+                </div>
               </div>
             ))}
           </div>
@@ -91,8 +93,10 @@ const DashboardPage = () => {
               <div className="dashboard-empty">No upcoming tasks</div>
             ) : upcomingTasks.map(task => (
               <div key={task._id} className="dashboard-task">
-                <span>⏰ {task.title}</span>
-                <div className="dashboard-meta">{task.course.name} • {new Date(task.content.dueDate).toLocaleDateString()}</div>
+                <span>{task.title}</span>
+                <div className="dashboard-meta">
+                  {task.course.name} • {new Date(task.content.dueDate).toLocaleDateString()} • Priority: <span className={`priority-${task.content.priority}`}>{task.content.priority || 'Medium'}</span>
+                </div>
               </div>
             ))}
           </div>

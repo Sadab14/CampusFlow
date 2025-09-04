@@ -145,15 +145,14 @@ const CalendarView = () => {
                   </div>
                 ))}
                 {(tasksByDate[dateKey] || []).map(task => (
-                  <div
-                    key={task._id}
-                    className={`calendar-view-task${task.content.status !== 'complete' && new Date(task.content.dueDate) < new Date() ? ' overdue-task' : ''}`}
-                  >
+                  <div key={task._id} className={`calendar-view-task priority-${task.content.priority || 'medium'}`}>
                     <span>{task.title}</span>
                     <div className="calendar-view-meta">
                       {task.content.status === 'complete' ? 'Complete' : 'Incomplete'}
+                      {' • '}
+                      Priority: {task.content.priority || 'Medium'}
                     </div>
-                    {/* <div className="calendar-view-meta">{task.course.name}</div> */}
+                    <div className="calendar-view-meta">{task.course.name}</div>
                   </div>
                 ))}
               </div>

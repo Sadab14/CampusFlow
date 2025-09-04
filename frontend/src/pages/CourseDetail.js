@@ -301,6 +301,20 @@ const CourseDetail = () => {
                   </select>
                 </div>
                 <div className="form-group">
+                  <label>Priority</label>
+                  <select
+                    value={newBlock.content.priority || 'medium'}
+                    onChange={e => setNewBlock({
+                      ...newBlock,
+                      content: { ...newBlock.content, priority: e.target.value }
+                    })}
+                  >
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                  </select>
+                </div>
+                <div className="form-group">
                   <label>Task Description</label>
                   <textarea
                     value={newBlock.content.text || ''}
@@ -379,12 +393,8 @@ const CourseDetail = () => {
                     </div>
                   )}
                   {block.type === 'task' && (
-                    <div>
-                      <p><strong>Due:</strong>{' '}
-                      {block.content.dueDate
-                        ? new Date(block.content.dueDate).toLocaleDateString()
-                        : 'No due date'}
-                      </p>
+                    <div className={`block-content priority-${block.content.priority || 'medium'}`}>
+                      <p><strong>Due:</strong> {block.content.dueDate ? new Date(block.content.dueDate).toLocaleDateString() : 'No due date'}</p>
                       <p>
                         <strong>Status:</strong> {block.content.status === 'complete' ? '✅ Complete' : '❌ Incomplete'}
                         <button
@@ -405,6 +415,7 @@ const CourseDetail = () => {
                           {block.content.status === 'complete' ? 'Mark Incomplete' : 'Mark Complete'}
                         </button>
                       </p>
+                      <p><strong>Priority:</strong> {block.content.priority || 'Medium'}</p>
                       <p>{block.content.text || 'No description'}</p>
                     </div>
                   )}
