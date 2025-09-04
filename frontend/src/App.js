@@ -8,6 +8,7 @@ import CreateCourse from './pages/CreateCourse';
 import Login from './components/Login';
 import Register from './components/Register';
 import LandingPage from './pages/LandingPage';
+import CalendarView from './pages/CalendarView'; // Import the CalendarView component
 import './App.css';
 
 // Protected Route Component
@@ -64,6 +65,11 @@ function AppContent() {
           <Route path="/courses/:id" element={
             <ProtectedRoute>
               <CourseDetail />
+            </ProtectedRoute>
+          } />
+          <Route path="/calendar" element={
+            <ProtectedRoute>
+              <CalendarView />
             </ProtectedRoute>
           } />
         </Routes>
