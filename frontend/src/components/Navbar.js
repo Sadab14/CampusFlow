@@ -20,6 +20,9 @@ const Navbar = () => {
           <Link to="/" className="nav-link">Courses</Link>
           <Link to="/courses/new" className="nav-link">Add Course</Link>
           <Link to="/calendar" className="nav-link">Calendar</Link>
+          <Link to="/dashboard" className="nav-link">
+            Dashboard
+          </Link>
           <span className="nav-user">Welcome, {user?.name}</span>
           <button onClick={handleLogout} className="nav-logout">
             Logout

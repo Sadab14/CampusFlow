@@ -1,0 +1,140 @@
+.dashboard-root {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f8fafc;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(60,60,120,0.10);
+}
+
+.dashboard-root h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #2563eb;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.dashboard-section {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(60,60,120,0.04);
+  padding: 18px 20px;
+  margin-bottom: 12px;
+}
+
+.dashboard-section h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #7c3aed;
+  margin-bottom: 12px;
+}
+
+.dashboard-event,
+.dashboard-task {
+  background: #eef2ff;
+  color: #2563eb;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 1px 4px rgba(37,99,235,0.08);
+}
+
+.dashboard-task {
+  background: #e6fbe8;
+  color: #22c55e;
+  box-shadow: 0 1px 4px rgba(34,197,94,0.08);
+}
+
+.overdue-task {
+  color: #dc2626 !important;
+  background: rgba(220,38,38,0.08) !important;
+  border-left: 4px solid #dc2626;
+  font-weight: 600;
+}
+
+.dashboard-meta {
+  font-size: 0.92rem;
+  color: #64748b;
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+.dashboard-empty {
+  color: #64748b;
+  font-size: 1rem;
+  padding: 8px 0;
+}
+
+.dashboard-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.dashboard-link {
+  background: #e0e7ff;
+  color: #2563eb;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 1px 4px rgba(37,99,235,0.08);
+}
+
+.dashboard-link:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+/* Responsive Fix */
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .dashboard-root {
+    padding: 18px 4px;
+  }
+  .dashboard-section {
+    padding: 14px 8px;
+  }
+  .dashboard-link {
+    padding: 8px 10px;
+    font-size: 0.98rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-root h1 {
+    font-size: 1.7rem;
+    margin-bottom: 16px;
+  }
+  .dashboard-section h2 {
+    font-size: 1.08rem;
+    margin-bottom: 8px;
+  }
+  .dashboard-section {
+    padding: 10px 2px;
+  }
+  .dashboard-event,
+  .dashboard-task {
+    font-size: 0.95rem;
+    padding: 6px 6px;
+  }
+  .dashboard-link {
+    font-size: 0.95rem;
+    padding: 7px 8px;
+  }
+}

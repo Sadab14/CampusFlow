@@ -9,6 +9,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import LandingPage from './pages/LandingPage';
 import CalendarView from './pages/CalendarView'; // Import the CalendarView component
+import DashboardPage from './pages/DashboardPage';
 import './App.css';
 
 // Protected Route Component
@@ -72,6 +73,7 @@ function AppContent() {
               <CalendarView />
             </ProtectedRoute>
           } />
+          <Route path="/dashboard" element={<DashboardPage />} />
         </Routes>
       </main>
     </div>
