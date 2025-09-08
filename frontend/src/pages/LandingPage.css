@@ -104,7 +104,7 @@
 }
 
 .landing-btn:hover {
-  background: #1d4ed8;
+  background: #275df1;
 }
 
 .landing-btn-outline {
@@ -114,8 +114,7 @@
 }
 
 .landing-btn-outline:hover {
-  border-color: #2563eb;
-  color: #2563eb;
+  color: #ffffff;
 }
 
 .landing-hero {
